@@ -5,7 +5,7 @@
 - vertex
 - edge
 - vertex/edge set
-- equality of graphs
+- equality of Gs 
 - adjacent
 - order of G
 - size of G
