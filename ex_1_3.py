@@ -45,13 +45,16 @@ with open('data_lines.txt', 'r') as f:
 	for i, line in enumerate(f.readlines()):
 		g_edges = list(it.chain(g_edges, it.product([i + 1],
 		list(map(int,line.strip().split(','))))))	
-		
-G.add_nodes_from(list(range(1,10)))
+g_nodes = list(range(-6,9,3))	
+G.add_nodes_from(g_nodes)
+
+g_edges = [(x,y) for x in g_nodes for y in g_nodes if (x+y in g_nodes) or
+(abs(x-y) in g_nodes)]
+
 labels = {n:n for n,val in G.nodes.items()}
 G.add_edges_from(g_edges)
 
 pos = nx.circular_layout(G)
 nx.draw_networkx_labels(G, pos, labels, **label_options)
 nx.draw(G, pos, **graph_options)
-print(G.size(), G.order())
 plt.show()
